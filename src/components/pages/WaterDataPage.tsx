@@ -61,7 +61,7 @@ export function WaterDataPage({ onNavigate }: WaterDataPageProps) {
         <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8">
           <div className="px-6 py-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
             <h2 className="text-gray-900">Real-Time River Monitoring</h2>
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+            <button onClick={() => window.open('../dummt_file.pdf')} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
               <Download className="w-4 h-4" />
               Export Data
             </button>

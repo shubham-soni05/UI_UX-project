@@ -128,7 +128,7 @@ export function DataReportsPage({ onNavigate }: DataReportsPageProps) {
                       <span>•</span>
                       <span>{report.downloads} downloads</span>
                     </div>
-                    <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
+                    <button onClick={() => window.open('../dummt_file.pdf')} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
                       <Download className="w-4 h-4" />
                       Download PDF
                     </button>
@@ -168,7 +168,7 @@ export function DataReportsPage({ onNavigate }: DataReportsPageProps) {
                     <td className="px-6 py-4 text-gray-600">{report.date}</td>
                     <td className="px-6 py-4 text-gray-600">{report.size}</td>
                     <td className="px-6 py-4">
-                      <button className="flex items-center gap-1 text-blue-600 hover:text-blue-700">
+                      <button onClick={() => window.open('../dummt_file.pdf')} className="flex items-center gap-1 text-blue-600 hover:text-blue-700">
                         <Download className="w-4 h-4" />
                         <span className="text-sm">PDF</span>
                       </button>

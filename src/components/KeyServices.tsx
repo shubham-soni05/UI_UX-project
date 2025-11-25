@@ -1,31 +1,40 @@
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Database, LineChart, Shield, BookOpen } from 'lucide-react';
+import { PageType } from '../App';
 
-export function KeyServices() {
+interface KeyServicesProps {
+  onNavigate?: (page: PageType) => void;
+}
+
+export function KeyServices({ onNavigate }: KeyServicesProps) {
   const services = [
     {
       icon: Database,
       title: 'Hydrological Data',
       description: 'Comprehensive database of water resources, rainfall, and river flow data across India.',
       image: 'https://images.unsplash.com/photo-1707989654953-4b4db329eaa1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyaXZlciUyMHdhdGVyJTIwZmxvd2luZ3xlbnwxfHx8fDE3NjM4OTA3MDR8MA&ixlib=rb-4.1.0&q=80&w=1080',
+      page: 'water-data' as PageType,
     },
     {
       icon: LineChart,
       title: 'Flood Forecasting',
       description: 'Advanced flood forecasting and early warning systems to protect lives and property.',
       image: 'https://images.unsplash.com/photo-1760775850558-68e24f4c621f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXRlciUyMG1hbmFnZW1lbnQlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc2Mzg5MDcwNHww&ixlib=rb-4.1.0&q=80&w=1080',
+      page: 'flood-alerts' as PageType,
     },
     {
       icon: Shield,
       title: 'Dam Safety',
       description: 'Monitoring and ensuring the safety of dams and water infrastructure nationwide.',
       image: 'https://images.unsplash.com/photo-1736781855659-19f11610ad00?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYW0lMjB3YXRlciUyMGluZnJhc3RydWN0dXJlfGVufDF8fHx8MTc2Mzg5MDcwM3ww&ixlib=rb-4.1.0&q=80&w=1080',
+      page: 'projects' as PageType,
     },
     {
       icon: BookOpen,
       title: 'Technical Guidelines',
       description: 'Comprehensive guidelines and standards for water resource development projects.',
       image: 'https://images.unsplash.com/photo-1707989654953-4b4db329eaa1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyaXZlciUyMHdhdGVyJTIwZmxvd2luZ3xlbnwxfHx8fDE3NjM4OTA3MDR8MA&ixlib=rb-4.1.0&q=80&w=1080',
+      page: 'publications' as PageType,
     },
   ];
 
@@ -62,7 +71,13 @@ export function KeyServices() {
                     {service.title}
                   </h3>
                   <p className="text-gray-600 mb-4">{service.description}</p>
-                  <button className="text-blue-600 hover:text-blue-700 transition-colors">
+                  <button 
+                    onClick={() => {
+                      onNavigate?.(service.page);
+                      window.scrollTo(0, 0);
+                    }}
+                    className="text-blue-600 hover:text-blue-700 transition-colors"
+                  >
                     Learn More →
                   </button>
                 </div>

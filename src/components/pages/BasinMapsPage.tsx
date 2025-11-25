@@ -154,7 +154,7 @@ export function BasinMapsPage({ onNavigate }: BasinMapsPageProps) {
                     <td className="px-6 py-4 text-gray-600">{basin.avgRainfall}</td>
                     <td className="px-6 py-4 text-gray-600">{basin.population}</td>
                     <td className="px-6 py-4">
-                      <button className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm">
+                      <button onClick={() => window.open('../dummt_file.pdf')} className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm">
                         <Download className="w-4 h-4" />
                         Map
                       </button>
@@ -173,7 +173,7 @@ export function BasinMapsPage({ onNavigate }: BasinMapsPageProps) {
             <p className="text-gray-600 text-sm mb-4">
               River Basin Atlas of India (2024 Edition) - Comprehensive compilation of all major and medium river basins with detailed maps and statistics.
             </p>
-            <button className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            <button onClick={() => window.open('../dummt_file.pdf')} className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
               <Download className="w-5 h-5" />
               Download Atlas (125 MB)
             </button>

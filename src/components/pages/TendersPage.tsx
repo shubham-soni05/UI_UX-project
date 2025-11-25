@@ -162,7 +162,7 @@ export function TendersPage({ onNavigate }: TendersPageProps) {
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <button className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm">
+                      <button onClick={() => window.open('../dummt_file.pdf')} className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm">
                         <FileText className="w-4 h-4" />
                         View
                       </button>

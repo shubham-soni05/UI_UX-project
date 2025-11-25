@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { QuickLinks } from './components/QuickLinks';
 import { LatestUpdates } from './components/LatestUpdates';
+import { UpdateDetailPage } from './components/pages/UpdateDetailPage';
 import { KeyServices } from './components/KeyServices';
 import { DataSection } from './components/DataSection';
 import { Footer } from './components/Footer';
@@ -19,13 +20,29 @@ import { ReservoirDataPage } from './components/pages/ReservoirDataPage';
 import { BasinMapsPage } from './components/pages/BasinMapsPage';
 import { HistoricalDataPage } from './components/pages/HistoricalDataPage';
 import { PublicationsPage } from './components/pages/PublicationsPage';
+import { AllUpdatesPage } from './components/pages/AllUpdatesPage';
 
-export type PageType = | 'home' | 'about' | 'projects' | 'data-reports' | 'tenders' | 'contact' | 
-  'water-data' | 'flood-alerts' | 'careers' | 'events' | 'reservoir-data' | 'basin-maps' | 
-  'historical-data' | 'publications';
+export type PageType =
+  | 'home'
+  | 'about'
+  | 'projects'
+  | 'data-reports'
+  | 'tenders'
+  | 'contact'
+  | 'water-data'
+  | 'flood-alerts'
+  | 'careers'
+  | 'events'
+  | 'reservoir-data'
+  | 'basin-maps'
+  | 'historical-data'
+  | 'publications'
+  | 'update'
+  | 'all-updates';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
+  const [selectedUpdate, setSelectedUpdate] = useState<{ type: string; title: string; date: string; isNew?: boolean; content?: string } | null>(null);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -55,13 +72,17 @@ export default function App() {
         return <HistoricalDataPage onNavigate={setCurrentPage} />;
       case 'publications':
         return <PublicationsPage onNavigate={setCurrentPage} />;
+      case 'update':
+        return <UpdateDetailPage update={selectedUpdate} onNavigate={setCurrentPage} />;
+      case 'all-updates':
+        return <AllUpdatesPage onNavigate={setCurrentPage} onSelectUpdate={setSelectedUpdate} />;
       default:
         return (
           <>
             <Hero onNavigate={setCurrentPage} />
             <QuickLinks onNavigate={setCurrentPage} />
-            <LatestUpdates />
-            <KeyServices />
+            <LatestUpdates onNavigate={setCurrentPage} onSelectUpdate={setSelectedUpdate} />
+            <KeyServices onNavigate={setCurrentPage} />
             <DataSection onNavigate={setCurrentPage} />
           </>
         );

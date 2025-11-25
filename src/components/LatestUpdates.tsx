@@ -1,47 +1,69 @@
 import { Clock, ArrowRight, Megaphone } from 'lucide-react';
+import { PageType } from '../App';
 
-export function LatestUpdates() {
+interface LatestUpdatesProps {
+  onNavigate?: (page: PageType) => void;
+  onSelectUpdate?: (update: { type: string; title: string; date: string; isNew?: boolean; content?: string }) => void;
+}
+
+export function LatestUpdates({ onNavigate, onSelectUpdate }: LatestUpdatesProps) {
   const updates = [
     {
       type: 'Notice',
       title: 'Guidelines for Water Resource Management Projects 2024',
       date: '20 Nov 2024',
       isNew: true,
+      content:
+        'The Central Water Commission has released the 2024 guidelines for water resource management projects. These guidelines include updated criteria for planning and environmental safeguards.\n\nKey highlights: revised environmental screening, updated design criteria for small dams, and recommended monitoring frameworks.\n\nAction: Project teams should review the guidelines and align new proposals accordingly.'
     },
     {
       type: 'Tender',
       title: 'Construction of Dam Safety Monitoring System - Phase II',
       date: '18 Nov 2024',
       isNew: true,
+      content:
+        'Phase II of the Dam Safety Monitoring System covers instrumentation and telemetry upgrades across major reservoirs. Interested firms should check tender documents for details.\n\nScope: sensor replacements, telemetry network expansion, data platform integration.\n\nDeadline: Pre-bid meeting and submission timelines are available in the tender notice.'
     },
     {
       type: 'Report',
       title: 'Annual Report on Water Statistics 2023-24',
       date: '15 Nov 2024',
       isNew: false,
+      content:
+        'The Annual Report on Water Statistics 2023-24 provides comprehensive statistical analysis of rainfall, river flows, and reservoir storage across the country.\n\nSources: data compiled from regional offices and automated gauging stations.\n\nUsage: Useful for planners, researchers and policymakers for trend analysis and resource allocation.'
     },
     {
       type: 'Circular',
       title: 'Updated Guidelines for Flood Forecasting Systems',
       date: '12 Nov 2024',
       isNew: false,
+      content:
+        'This circular updates the procedures and responsibilities for the flood forecasting network, including model updates and communication protocols.\n\nChanges: new modelling standards and a communication hierarchy for cross-state alerts.\n\nNote: Agencies should verify local contact points and test end-to-end alert delivery.'
     },
     {
       type: 'Event',
       title: 'National Water Conference 2024 - Registration Open',
       date: '10 Nov 2024',
       isNew: false,
+      content:
+        'Registration for the National Water Conference 2024 is open. The conference will cover critical topics such as climate impacts on water resources and basin planning.\n\nProgram: keynote sessions, panel discussions, and poster submissions.\n\nRegistration: Early bird discounts available. Visit the conference page for details.'
     },
   ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-16">
-      <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-8">
         <div>
           <h2 className="text-gray-900 mb-2">Latest Updates</h2>
           <p className="text-gray-600">Stay informed with our latest announcements and publications</p>
         </div>
-        <button className="hidden md:flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors">
+        <button
+          onClick={() => {
+            onNavigate?.('all-updates');
+            window.scrollTo(0, 0);
+          }}
+          className="hidden md:flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
+        >
           View All
           <ArrowRight className="w-4 h-4" />
         </button>
@@ -51,6 +73,11 @@ export function LatestUpdates() {
         {updates.map((update, index) => (
           <div
             key={index}
+            onClick={() => {
+              onSelectUpdate?.(update);
+              onNavigate?.('update');
+              window.scrollTo(0, 0);
+            }}
             className="p-4 hover:bg-gray-50 transition-colors border-b border-gray-200 last:border-b-0 cursor-pointer group"
           >
             <div className="flex items-start gap-4">
@@ -84,7 +111,13 @@ export function LatestUpdates() {
         ))}
       </div>
 
-      <button className="md:hidden mt-4 w-full flex items-center justify-center gap-2 text-blue-600 hover:text-blue-700 transition-colors py-3">
+      <button
+        onClick={() => {
+          onNavigate?.('data-reports');
+          window.scrollTo(0, 0);
+        }}
+        className="md:hidden mt-4 w-full flex items-center justify-center gap-2 text-blue-600 hover:text-blue-700 transition-colors py-3"
+      >
         View All Updates
         <ArrowRight className="w-4 h-4" />
       </button>
